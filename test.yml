@@ -17,6 +17,10 @@
         headers:
           Authorization: "Token {{ netbox_api_token }}"
       register: netbox_response
+
+    - name: Filter jsp and cisco
+      set_fact:
+        filtered_devices: "{{ netbox_response.json.results | json_query('[?device_role.id==1]') }}"
       
     - name: Display Netbox API response
       debug:
