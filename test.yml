@@ -18,10 +18,6 @@
           Authorization: "Token {{ netbox_api_token }}"
       register: netbox_response
 
-     - name: Display Netbox API response
-      debug:
-        var: netbox_response
-
     - name: Filter jsp and cisco
       set_fact:
         filtered_devices: "{{ netbox_response.json.results.device_role | selectattr('id', 'equalto', 1) | list }}"
