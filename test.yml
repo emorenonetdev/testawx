@@ -16,8 +16,6 @@
         method: GET
         headers:
           Authorization: "Token {{ netbox_api_token }}"
-        params:
-          "device_role.name": "{{ role_name_filter }}"
       register: netbox_response
 
     - name: Filter Role
@@ -27,4 +25,4 @@
       
     - name: Display Netbox API response
       debug:
-        var: netbox_response.json
+        var: filtered_roles
