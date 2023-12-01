@@ -24,7 +24,7 @@
 
     - name: Extract NTP config for jcp devices
       set_fact:
-        ntp_configs: filtered_devices_jcp['custom_fields'][0]['ntp_config']
+        ntp_configs: filtered_devices_jcp['custom_fields'][0]['ntp_config'][0]
 
     - name: Display NTP Configuration
       debug:
