@@ -19,5 +19,9 @@
 
     - name: Delete data
       set_fact:
-        delete_data: netbox_response.json
+        delete_data: netbox_response
+
+    - name: Display NTP Configuration
+      debug:
+        var: delete_data.json
 
