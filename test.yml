@@ -30,5 +30,6 @@
 
     - name: Display NTP Configuration
       debug:
-        var:  debug:
+        var: ntp_configs
         msg: "{{ ntp_configs | default([]) }}"
+
