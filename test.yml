@@ -20,8 +20,8 @@
 
     - name: Filter jsp and cisco
       set_fact:
-        filtered_devices: "{{ netbox_response.json.results | json_query('[?device_role.id==1]') }}"
+        filtered_devices: "{{ netbox_response.json.results.device_role | selectattr('id', 'equalto', 1) | list }}"
       
     - name: Display Netbox API response
       debug:
-        var: netbox_response
+        var: filtered_devices
