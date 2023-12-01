@@ -14,7 +14,7 @@
         url: "{{ netbox_api_url }}"
         method: GET
         headers:
-          Autorization: "Token {{ netbox_api_token }}"
+          Authorization: "Token {{ netbox_api_token }}"
         register: netbox_response
     - name: Display Netbox API response
       debug:
