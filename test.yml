@@ -22,9 +22,10 @@
       set_fact:
         filtered_devices_jcp: "{{ netbox_response.json.results | selectattr('device_role.name', 'equalto', 'jcp') | list }}"
 
-    - name: Extract NTP config for jcp devices
+    - name: Filter ntp config
       set_fact:
-        ntp_configs: filtered_devices_jcp['custom_fields'][0]['ntp_config'][0]
+        filtered_device_with_ntp: "{{ filtered_devices_jcp | first }}"
+        ntp_config: "{{ filtered_device_with_ntp.custom_fields.ntp_config | default({}) }}"
 
     - name: Display NTP Configuration
       debug:
