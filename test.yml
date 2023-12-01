@@ -1,6 +1,8 @@
 ---
 - name: Test AWX
-  host: all
+  hosts: localhost
+  connection: local
+  gather_facts: no
   task:
     - name: Set variables
       set_fact:
