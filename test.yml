@@ -20,6 +20,6 @@
 
     - name: Filter jsp and cisco
       set_fact:
-        filtered_devices: "{{ netbox_response.json.results | selectattr('device_role.name', 'equalto', 'jsp') | list }}"
+        filtered_devices: "{{ netbox_response.json.results | selectattr('device_role.name', 'equalto', 'jcp') | list }}"
       
    
