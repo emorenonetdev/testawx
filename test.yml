@@ -24,6 +24,6 @@
 
     - name: Filter ntp config
       set_fact:
-        filtered_devices_ntp: "{{filtered_devices_jsp['custom_fields'][0].ntp_config}}"
+        filtered_devices_ntp: "{{filtered_devices_jsp[0]['custom_fields'][0].ntp_config}}"
 
    
