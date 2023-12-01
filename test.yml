@@ -29,5 +29,5 @@
 
     - name: Display NTP Configuration
       debug:
-        var: ntp_config
+        var: ntp_configs
    
