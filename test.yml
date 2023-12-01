@@ -20,7 +20,7 @@
 
     - name: Filter Role
       set_fact:
-        filtered_roles: "{{ netbox_response.json | json_query('[?device_role.name== {{ role_name_filter }}') }}"
+        filtered_roles: "{{ netbox_response.json | json_query('[?device_role.name== {{ role_name_filter }}') }}]"
   
       
     - name: Display Netbox API response
