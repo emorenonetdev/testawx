@@ -1,0 +1,18 @@
+- name: Test AWX
+  host: all
+  task:
+    - name: Set variables
+      set_fact:
+        netbox_api_url: "http://137.184.18.229:8000/api/dcim/devices/"
+        netbox_api_token: "4560d44e6a2c66a8a703947d204eed2d671c6da4"
+    
+    - name: Netbox API GET request
+      uri:
+        url: "{{ netbox_api_url }}"
+        method: GET
+        headers:
+          Autorization: "Token {{ netbox_api_token }}"
+        register: netbox_response
+    - name: Display Netbox API response
+      debug:
+        var: netbox_response.json
