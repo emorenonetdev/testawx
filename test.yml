@@ -7,7 +7,7 @@
   vars: 
     netbox_api_url: "http://137.184.18.229:8000/api/dcim/devices/"
     netbox_api_token: "4560d44e6a2c66a8a703947d204eed2d671c6da4"
-    role_name_filter: "jcp"
+    
   
   tasks:       
     - name: Netbox API GET request
@@ -17,12 +17,7 @@
         headers:
           Authorization: "Token {{ netbox_api_token }}"
       register: netbox_response
-
-    - name: Filter Role
-      set_fact:
-        filtered_roles: "{{ netbox_response.json | json_query('[?device_role.name== {{ role_name_filter }}') }}]"
-  
       
     - name: Display Netbox API response
       debug:
-        var: filtered_roles
+        var: netbox_response
