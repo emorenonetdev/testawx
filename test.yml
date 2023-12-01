@@ -3,13 +3,12 @@
   hosts: localhost
   connection: local
   gather_facts: no
+
+  vars: 
+    netbox_api_url: "http://137.184.18.229:8000/api/dcim/devices/"
+    netbox_api_token: "4560d44e6a2c66a8a703947d204eed2d671c6da4"
   
-  tasks:
-    - name: Set variables
-      set_fact:
-        netbox_api_url: "http://137.184.18.229:8000/api/dcim/devices/"
-        netbox_api_token: "4560d44e6a2c66a8a703947d204eed2d671c6da4"
-    
+  tasks:       
     - name: Netbox API GET request
       uri:
         url: "{{ netbox_api_url }}"
