@@ -24,8 +24,7 @@
 
     - name: Extract NTP config for jcp devices
       set_fact:
-        ntp_configs: "{{ filtered_devices_jcp[0]['custom_fields'][0] }}"
-      loop: "{{ filtered_devices_jcp }}"
+        ntp_configs: filtered_devices_jcp[0]['custom_fields'][0]
 
     - name: Display NTP Configuration
       debug:
