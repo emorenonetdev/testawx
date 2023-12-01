@@ -26,8 +26,13 @@
       set_fact:
         ntp_configs: "{{ ntp_configs | default([]) + [item.custom_fields.ntp_config] }}"
       loop: "{{ filtered_devices_jcp }}"
+      when: item.custom_fields.ntp_config is defined
 
     - name: Display NTP Configuration
       debug:
         var: ntp_configs
-   
+
+    - name: Display Message if no NTP Configuration
+      debug:
+        msg: "No NTP configuration found for jcp devices."
+      when: ntp_configs | length == 0
