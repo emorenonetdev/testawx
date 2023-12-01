@@ -1,3 +1,4 @@
+---
 - name: Test AWX
   host: all
   task:
