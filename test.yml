@@ -3,7 +3,8 @@
   hosts: localhost
   connection: local
   gather_facts: no
-  task:
+  
+  tasks:
     - name: Set variables
       set_fact:
         netbox_api_url: "http://137.184.18.229:8000/api/dcim/devices/"
