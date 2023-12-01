@@ -20,4 +20,4 @@
       
     - name: Display Netbox API response
       debug:
-        var: netbox_response
+        var: netbox_response[0]results[0]
