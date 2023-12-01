@@ -1,5 +1,4 @@
 - name: Test AWX
-  Playbook: test.yml
   host: all
   task:
     - name: Set variables
