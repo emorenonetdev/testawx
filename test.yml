@@ -19,7 +19,7 @@
       register: netbox_response
 
     - name: Filter jsp
-      set_fact:
+      debug:
         filtered_devices_jsp: "{{ netbox_response.json.results | selectattr('device_role.name', 'equalto', 'jcp') | list }}"
 
     - name: Filter ntp config
