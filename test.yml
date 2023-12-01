@@ -18,8 +18,12 @@
           Authorization: "Token {{ netbox_api_token }}"
       register: netbox_response
 
-    - name: Filter jsp and cisco
+    - name: Filter jsp
       set_fact:
-        filtered_devices: "{{ netbox_response.json.results | selectattr('device_role.name', 'equalto', 'jcp') | list }}"
-      
+        filtered_devices_jsp: "{{ netbox_response.json.results | selectattr('device_role.name', 'equalto', 'jcp') | list }}"
+
+    - name: Filter ntp config
+      set_fact:
+        filtered_devices_ntp: filtered_devices_jsp['custom_fields'][0]['ntp_config'][0]
+
    
