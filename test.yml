@@ -19,5 +19,5 @@
 
     - name: Delete data
       set_fact:
-        delete_data: netbox_response
+        delete_data: netbox_response.json
 
