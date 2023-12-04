@@ -24,7 +24,7 @@
 
     - name: Create data_result list
       set_fact:
-        data_result: "{{ data_result | default([]) + [{'id': item.id, 'name': item.name, 'custom_fields': {'ntp_config': item.custom_fields.ntp_config | default({})}}] }}"
+        data_result: "{{ data_result | default([]) + [{'id': item.id, 'name': item.name, 'custom_fields': {'ntp_config': item.custom_fields.ntp_config | default({})}, 'created': item.created, 'last_updated': item.last_updated}] }}"
       loop: "{{filtered_devices_jcp}}"
 
     - name: result
