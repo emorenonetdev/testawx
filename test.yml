@@ -21,10 +21,9 @@
       set_fact:
         filtered_devices_jcp: "{{ netbox_response.json.results | selectattr('device_role.name', 'equalto', 'jcp') | list }}"
 
-    - name: data result
+    - name: Create data_result list
       set_fact:
-        data_result: "id:{{item.id}}"
-        loop: "{{ filtered_devices_jcp }}"
+        data_result: "{{ filtered_devices_jcp | map(attribute='id') | list }}"
     
     - name: result
       debug:
