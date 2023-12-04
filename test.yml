@@ -8,7 +8,7 @@
     netbox_api_url: "http://137.184.18.229:8000/api/dcim/devices/"
     netbox_api_token: "4560d44e6a2c66a8a703947d204eed2d671c6da4"
     default_user: "networkingdevdeveloper"
-    output_directory: "{{ playbook_dir }}/{{ default_user }}/Desktop/Projects/Test/testawx"
+    output_directory: "/Users/{{ default_user }}/Desktop/Projects/Test/testawx"
     output_file: "{{ output_directory }}/data_result.json"
 
   tasks:       
@@ -36,9 +36,9 @@
       loop_control:
         loop_var: item
 
-    - name: Mostrar valor de ansible_user_dir
+    - name: Mostrar ruta completa
       debug:
-        var: "{{ playbook_dir }}/{{ default_user }}"
+        msg: "{{ output_directory }}"
 
     - name: Save file JSON
       copy:
