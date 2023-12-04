@@ -7,7 +7,7 @@
   vars: 
     netbox_api_url: "http://137.184.18.229:8000/api/dcim/devices/"
     netbox_api_token: "4560d44e6a2c66a8a703947d204eed2d671c6da4"
-    output_directory: "{{ ansible_user_dir }}/Desktop/Projects/Test/testawx"
+    output_directory: "{{ playbook_dir }}/{{ default_user }}/Desktop/Projects/Test/testawx"
     output_file: "{{ output_directory }}/data_result.json"
 
   tasks:       
@@ -37,7 +37,7 @@
 
     - name: Mostrar valor de ansible_user_dir
       debug:
-        var: ansible_user_dir
+        var: "{{ playbook_dir }}/{{ default_user }}"
 
     - name: Save file JSON
       copy:
