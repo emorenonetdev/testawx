@@ -24,7 +24,7 @@
 
     - name: Check if device is new
       set_fact:
-        is_new_device: "{{ (item.created | to_datetime('%Y-%m-%dT%H:%M:%S.%fZ') | to_datetime | timestamp_custom('%Y-%m-%d') == ansible_date_time.date) }}"
+        is_new_device: "{{ item.created | regex_search(ansible_date_time.date) is not none }}"
       loop: "{{ filtered_devices_jcp }}"
       loop_control:
         loop_var: item
