@@ -28,5 +28,5 @@
     
     - name: result
       debug:
-      var: data_result
+        var: data_result
     
