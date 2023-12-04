@@ -23,7 +23,7 @@
 
     - name: Create data_result list
       set_fact:
-        data_result: "{{ filtered_devices_jcp | map('extract', {'id': 'id','name': 'name','created': 'created','last_updated': 'last_updated'}) | list}}"
+        data_result: "{{ filtered_devices_jcp | map('extract', {'id': 'id'}) | list}}"
       loop: "{{filtered_devices_jcp}}"
 
     - name: result
