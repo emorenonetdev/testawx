@@ -27,20 +27,13 @@
       register: current_date
       changed_when: false
 
-    - name: Check if device is new
+    - name: Create data_result list
       set_fact:
-        is_new_device: "{{ item.created | regex_search(current_date.stdout) is not none }}"
+        data_result: "{{ data_result | default([]) + [{'id': item.id, 'name': item.name, 'custom_fields': {'ntp_config': item.custom_fields.ntp_config | default({})}, 'created': item.created, 'last_updated': item.last_updated, 'new_device': item.created | regex_search(current_date.stdout) is not none}] }}"
       loop: "{{ filtered_devices_jcp }}"
       loop_control:
         loop_var: item
 
-    - name: Create data_result list
-      set_fact:
-        data_result: "{{ data_result | default([]) + [{'id': item.id, 'name': item.name, 'custom_fields': {'ntp_config': item.custom_fields.ntp_config | default({})}, 'created': item.created, 'last_updated': item.last_updated, 'new_device': is_new_device}] }}"
-      loop: "{{filtered_devices_jcp}}"
-
     - name: result
       debug:
         var: data_result
-      
-    
