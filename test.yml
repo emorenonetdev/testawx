@@ -23,7 +23,13 @@
 
     - name: Create data_result list
       set_fact:
-        data_result: "{{ filtered_devices_jcp | map(attribute='id') | list }}"
+        data_result: "{{ filtered_devices_jcp | map(attribute={
+                            'id': 'id',
+                            'name': 'name',
+                            'custom_fields': 'custom_fields',
+                            'created': 'created',
+                            'last_updated': 'last_updated'
+                          }) | list }}"
     
     - name: result
       debug:
