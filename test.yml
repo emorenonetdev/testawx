@@ -23,6 +23,6 @@
 
     - name: Display NTP Configuration
       debug:
-        var: filtered_devices_jcp
+        var: "id: {{ item.id }}, name: {{ item.name }}"
 
 
