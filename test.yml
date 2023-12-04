@@ -41,6 +41,6 @@
 
     - name: Save file JSON
       copy:
-        content: "{{ data_result.json | to_nice_json }}"
+        content: "{{ data_result | to_nice_json }}"
         dest: "{{ output_file }}"
 
