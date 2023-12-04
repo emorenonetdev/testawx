@@ -7,7 +7,7 @@
   vars: 
     netbox_api_url: "http://137.184.18.229:8000/api/dcim/devices/"
     netbox_api_token: "4560d44e6a2c66a8a703947d204eed2d671c6da4"
-    output_directory: "~/Users/networkingdevdeveloper/Desktop/output"  # Ruta del directorio de salida
+    output_directory: "~/Volumes/Macintosh HD - Data/Projects/Test/testawx"  # Ruta del directorio de salida
     output_file: "{{ output_directory }}/data_result.json"  # Ruta completa del archivo de salida
     
 
