@@ -23,9 +23,7 @@
 
     - name: Create data_result list
       set_fact:
-        data_result: "{{ filtered_devices_jcp | map(attribute={
-                            'id': 'id'
-                          }) | list }}"
+        data_result: "{{ filtered_devices_jcp | map(attribute='json') | map('combine', {'id': item.id, 'name': item.display, 'created': item.created, 'last_updated': item.last_updated, 'new_device': false, 'custom_fields': {'ntp_config: item.ntp_config'}}) | list }}"
     
     - name: result
       debug:
