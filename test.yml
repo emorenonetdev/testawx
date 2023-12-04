@@ -37,17 +37,6 @@
       loop_control:
         loop_var: item
 
-    - name: Debug path output
-      debug:
-        msg: "La ruta de salida es {{ output_file }}"
-
-    - name: Create directory
-      file:
-        path: "{{ output_directory }}"
-        state: directory
-        mode: '0755'
-      when: not (output_directory is exists)
-
     - name: Save file JSON
       copy:
         content: "{{ data_result | to_nice_json }}"
