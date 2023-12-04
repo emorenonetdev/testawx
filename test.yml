@@ -17,8 +17,12 @@
           Authorization: "Token {{ netbox_api_token }}"
       register: netbox_response
 
-    - name: Delete data
+    - name: Filter jcp
       set_fact:
-        delete_data: netbox_response
+        filtered_devices_jcp: "{{ netbox_response.json.results | selectattr('device_role.name', 'equalto', 'jcp') | list }}"
+
+    - name: Display NTP Configuration
+      debug:
+        var: filtered_devices_jcp
 
 
