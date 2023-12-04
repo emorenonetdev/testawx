@@ -29,4 +29,8 @@
     - name: result
       debug:
         var: data_result
+      verbosity: 0
+      no_log: true
+      ansible_verbose_always: false
+      ansible_no_log: null
     
