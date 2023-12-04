@@ -23,7 +23,7 @@
 
     - name: data result
       set_fact:
-        data_result: "'id':{{id}}"
+        data_result: "id:{{id}}"
         loop: "{{ filtered_devices_jcp }}"
     
     - name: result
