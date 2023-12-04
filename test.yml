@@ -7,6 +7,8 @@
   vars: 
     netbox_api_url: "http://137.184.18.229:8000/api/dcim/devices/"
     netbox_api_token: "4560d44e6a2c66a8a703947d204eed2d671c6da4"
+    template_output_file: "/path/to/save/output.json"  # Ruta para guardar el resultado
+
     
   tasks:       
     - name: Netbox API GET request
