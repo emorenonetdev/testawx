@@ -22,9 +22,14 @@
       set_fact:
         filtered_devices_jcp: "{{ netbox_response.json.results | selectattr('device_role.name', 'equalto', 'jcp') | list }}"
 
+    - name: Check current date
+      command: date +"%Y-%m-%d"
+      register: current_date
+      changed_when: false
+
     - name: Check if device is new
       set_fact:
-        is_new_device: "{{ item.created | regex_search(ansible_date_time.date) is not none }}"
+        is_new_device: "{{ item.created | regex_search(current_date.stdout) is not none }}"
       loop: "{{ filtered_devices_jcp }}"
       loop_control:
         loop_var: item
