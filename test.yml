@@ -7,8 +7,6 @@
   vars: 
     netbox_api_url: "http://137.184.18.229:8000/api/dcim/devices/"
     netbox_api_token: "4560d44e6a2c66a8a703947d204eed2d671c6da4"
-    template_output_file: "/path/to/save/output.json"  # Ruta para guardar el resultado
-
     
   tasks:       
     - name: Netbox API GET request
@@ -23,9 +21,12 @@
       set_fact:
         filtered_devices_jcp: "{{ netbox_response.json.results | selectattr('device_role.name', 'equalto', 'jcp') | list }}"
 
-    - name: Apply template to device data
-      template:
-        src: device_template.j2
-        dest: "{{ template_output_file }}"
+    - name: data result
+      set_fact:
+        data_result: "{{id}}"
+        loop: "{{ filtered_devices_jcp }}"
     
+    - name: result
+      debug:
+      var: data_result
     
