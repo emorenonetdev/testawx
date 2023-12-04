@@ -1,0 +1,12 @@
+[
+  {% for device in filtered_devices_jcp %}
+    {
+      "id": {{ device.id }},
+      "name": "{{ device.name }}",
+      "custom_fields": {% if device.custom_fields %}{{ device.custom_fields }}{% else %}"None"{% endif %},
+      "created": "{{ device.created }}",
+      "last_updated": "{{ device.last_updated }}",
+      "new_device": false
+    }{% if not loop.last %},{% endif %}
+  {% endfor %}
+]
