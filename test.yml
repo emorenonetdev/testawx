@@ -21,9 +21,15 @@
       set_fact:
         filtered_devices_jcp: "{{ netbox_response.json.results | selectattr('device_role.name', 'equalto', 'jcp') | list }}"
 
+
+    - name: Format required
+      set_fact:
+        formatted_devices: "{{ filtered_devices_jcp | map(attribute='ansible_facts') | map('combine', {'new_device': false}) | map('combine', {'id': item.id, 'name': item.name, 'custom_fields': item.custom_fields, 'created': item.created, 'last_updated': item.last_updated}) | list }}"
+      loop: "{{ filtered_devices_jcp }}"
+      loop_control:
+        loop_var: item
+
     - name: Display NTP Configuration
       debug:
-        var: "id: {{ item.id }}, name: {{ item.name }}"
-      loop: "{{ filtered_devices_jcp }}"
-
-
+        var: formatted_devices
+    
