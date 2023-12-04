@@ -22,23 +22,9 @@
         filtered_devices_jcp: "{{ netbox_response.json.results | selectattr('device_role.name', 'equalto', 'jcp') | list }}"
 
     - name: Create data_result list
-        set_fact:
-          data_result: >-
-            {{
-              filtered_devices_jcp |
-              map('extract', {
-                'id': 'id',
-                'name': 'display',
-                'created': 'created',
-                'last_updated': 'last_updated',
-                'new_device': false,
-                'custom_fields': {
-                  'ntp_config': 'custom_fields.ntp_config'
-                }
-              }) |
-              list
-            }}
-
+      set_fact:
+        data_result: "{{ filtered_devices_jcp | map('extract', {'id': 'id','name': 'display','created': 'created','last_updated': 'last_updated','new_device': false,'custom_fields': {'ntp_config': 'custom_fields.ntp_config'}}) | list}}
+    
     - name: result
       debug:
         var: data_result
