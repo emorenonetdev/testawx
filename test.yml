@@ -7,7 +7,8 @@
   vars: 
     netbox_api_url: "http://137.184.18.229:8000/api/dcim/devices/"
     netbox_api_token: "4560d44e6a2c66a8a703947d204eed2d671c6da4"
-    exclude_keys: '_ansible_verbose_always,_ansible_no_log,changed'
+    file_path: "/Volumes/Macintosh\ HD\ -\ Data/Projects/Test/data_result.json" # Ruta con caracteres escapados
+
     
   tasks:       
     - name: Netbox API GET request
@@ -34,6 +35,7 @@
       loop_control:
         loop_var: item
 
-    - name: result
-      debug:
-        var: data_result
+    - name: Save format JSON
+      copy:
+        content: "{{ data_result | to_nice_json }}"
+        dest: "{{ file_path }}"
